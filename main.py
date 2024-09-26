@@ -6,6 +6,9 @@ import models, schema  # Ensure these imports are correct
 from database import SessionLocal, engine, Base
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+# import logging
+
+# logging.basicConfig(level=logging.ERROR)
 
 app = FastAPI()
 from fastapi.middleware.cors import CORSMiddleware # for separate frontend and backend server
@@ -46,7 +49,7 @@ async def show_feedback_form():
 
 
 
-#feedback form submission route
+# feedback form submission route
 @app.post("/feedform", response_model=schema.FeedBase)
 async def feedback(name: str = Form(...), phoneno: str = Form(...), location: str = Form(...), description: str = Form(...), db: Session = Depends(get_db)):
     new_form = models.Feedback(name=name, phoneno=phoneno, location=location, description=description) # type: ignore
@@ -54,9 +57,23 @@ async def feedback(name: str = Form(...), phoneno: str = Form(...), location: st
     db.commit()
     db.refresh(new_form)
     return new_form
-    #return HTMLResponse(f"<h3>Feedback Submitted!</h3><p>Name: {name}</p><p>Location: {location}</p><p>Description: {description}</p>")
+    # return HTMLResponse(f"<h3>Feedback Submitted!</h3><p>Name: {name}</p><p>Location: {location}</p><p>Description: {description}</p>")
 
 
+# @app.post("/feedform", tags=['feedback'])
+# async def feedback(
+#     name: str = Form(...),
+#     email: str = Form(...),
+#     location: str = Form(...),
+#     phoneno: str = Form(...),
+#     description: str = Form(...),
+#     db: Session = Depends(get_db)
+# ):
+#     new_form = models.Feedback(name=name, email=email, location=location, phoneno=phoneno, description=description)  # type: ignore
+#     db.add(new_form)
+#     db.commit()
+#     db.refresh(new_form)
+#     return new_form
 
 
 @app.get("/feedbacks", response_class=HTMLResponse)
@@ -70,6 +87,34 @@ async def show_all_feedbacks(db: Session = Depends(get_db)):
 
     return HTMLResponse(content=html_content)
 
+
+# @app.get("/feedform/{id}", response_class=HTMLResponse, tags=['feedback'])
+# async def all(id: int, db: Session = Depends(get_db)):
+#     try:
+#         feedback = db.query(models.Feedback).filter(models.Feedback.id == id).first()  # type: ignore
+#         if not feedback:
+#             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        
+#         # Return an HTML page with the feedback details
+#         html_content = f"""
+#         <html>
+#             <head>
+#                 <title>Feedback #{id}</title>
+#             </head>
+#             <body>
+#                 <h1>Feedback Details</h1>
+#                 <p><strong>Name:</strong> {feedback.name}</p>
+#                 <p><strong>Email:</strong> {feedback.email}</p>
+#                 <p><strong>Location:</strong> {feedback.location}</p>
+#                 <p><strong>Phone Number:</strong> {feedback.phoneno}</p>
+#                 <p><strong>Description:</strong> {feedback.description}</p>
+#             </body>
+#         </html>
+#         """
+#         return HTMLResponse(content=html_content)
+#     except Exception as e:
+#         logging.error(f"Error: {e}")
+#         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail=str(e))
 
 
 @app.get("/feedform/{id}", response_model=List[schema.ShowFeed])

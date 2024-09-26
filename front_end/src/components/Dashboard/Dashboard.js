@@ -1,25 +1,29 @@
-import React from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import "./userDash.css";
 
+import React from "react";
+import { Link, Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import Celebration from "../../assets/celebration.svg";
 import Profile from "../Profile/Profile";
 import Feedbacks from "../Feedback/Feedback";
 import Reports from "../Reports/Reports";
-import "./Dashboard.css"; 
+import "./Dashboard.css";
 
 const Dashboard = ({ userName }) => {
   const navigate = useNavigate();
+  const location = useLocation(); // Get the current route location
 
   const handleFeedback = () => {
-    navigate("/feedform");  
+    navigate("/feedform");
   };
 
   const handleReport = () => {
-    navigate("/report");  
+    navigate("/report");
   };
 
+  // Check if we're on the root dashboard page to conditionally render content
+  const isDashboardRoot = location.pathname === "/dashboard";
+
   if (!userName) {
-    alert("Login required! ");
+    alert("Login required!");
     navigate("/login");
     return null;
   }
@@ -27,10 +31,9 @@ const Dashboard = ({ userName }) => {
   return (
     <>
       <div className="dashboard">
-        
+        {/* Sidebar Navigation */}
         <nav className="dashboard-nav">
           <h2>{userName}'s Dashboard</h2>
-          <br></br>
           <ul>
             <li>
               <Link to="/dashboard">Dashboard</Link>
@@ -47,9 +50,16 @@ const Dashboard = ({ userName }) => {
           </ul>
         </nav>
 
-        <div className="dashboard-container">
-          <h1>Welcome to the User Dashboard</h1>
-          <p>
+        {/* Conditionally Render Dashboard Content only on Root */}
+        {isDashboardRoot && (
+          <div className="dashboard-container">
+            <div className="dashboard-header">
+              <h1>
+                Welcome back, <span>{userName}</span>
+                <img src={Celebration} alt="celebration-img" />
+              </h1>
+            </div>
+            <p>
             As a responsible citizen, it’s important to take proactive steps to
             ensure the well-being and safety of our communities. By
             participating actively, you help to create a cleaner, safer, and
@@ -84,25 +94,24 @@ const Dashboard = ({ userName }) => {
             </li>
           </ul>
 
-          <div className="button-group">
-            <button className="dashboard-button" onClick={handleFeedback}>
-              Make a Feedback
-            </button>
-            <button className="dashboard-button" onClick={handleReport}>
-              Make a Report
-            </button>
+            <div className="button-group">
+              <button className="dashboard-button" onClick={handleFeedback}>
+                Make a Feedback
+              </button>
+              <button className="dashboard-button" onClick={handleReport}>
+                Make a Report
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Main content area */}
+        {/* Main Content Area */}
         <div className="dashboard-content">
-          <outlet>
-            <Routes>
-              <Route path="profile" element={<Profile />} />
-              <Route path="feedbacks" element={<Feedbacks />} />
-              <Route path="reports" element={<Reports />} />
-            </Routes>
-          </outlet>
+          <Routes>
+            <Route path="profile" element={<Profile />} />
+            <Route path="feedbacks" element={<Feedbacks />} />
+            <Route path="reports" element={<Reports />} />
+          </Routes>
         </div>
       </div>
     </>
@@ -110,3 +119,4 @@ const Dashboard = ({ userName }) => {
 };
 
 export default Dashboard;
+

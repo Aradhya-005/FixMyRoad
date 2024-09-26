@@ -1,10 +1,11 @@
-from typing import List, Optional
+from typing import List
 from pydantic import BaseModel
 
 
 class FeedBase(BaseModel):
     name: str
     phoneno: str
+    # email:str
     location : str
     description : str
 
@@ -29,6 +30,7 @@ class ShowUser(BaseModel):
 class ShowFeed(BaseModel):
     name: str
     phoneno: str
+    # email:str
     location : str
     description : str
 

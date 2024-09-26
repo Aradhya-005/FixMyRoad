@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './FeedbackForm.css'; // Import your CSS file
 
 const FeedbackForm = () => {
     const [formData, setFormData] = useState({
@@ -39,9 +40,12 @@ const FeedbackForm = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center' }}>
-            <h2>Submit Feedback</h2>
-            <form onSubmit={handleSubmit}>
+        <section>
+            
+            <div className="report-issue-section"> 
+            
+            <form className="form" onSubmit={handleSubmit}>
+            <h2>Submit Feedback</h2> 
                 <div>
                     <label>Name:</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -52,15 +56,17 @@ const FeedbackForm = () => {
                 </div>
                 <div>
                     <label>Location:</label>
-                    <input type="text" name="location" value={formData.location} onChange={handleChange}  required />
+                    <input type="text" name="location" value={formData.location} onChange={handleChange} required />
                 </div>
                 <div>
                     <label>Description:</label>
-                    <textarea name="description" value={formData.description} onChange={handleChange} required ></textarea>
+                    <textarea name="description" value={formData.description} onChange={handleChange} required></textarea>
                 </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
+        </section>
+      
     );
 };
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import './ReportIssue.css'; // Importing the same CSS file for styling
 
 const ReportIssue = () => {
     const [formData, setFormData] = useState({
         name: '',
         location: '',
+        elocation: '',
         issueDescription: ''
     });
 
@@ -22,25 +24,54 @@ const ReportIssue = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center' }}>
-            <h2>Report an Issue</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Location:</label>
-                    <input type="text" name="location" value={formData.location} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Exact Location:</label>
-                    <input type="text" name="elocation" value={formData.elocation} onChange={handleChange} />
-                </div>
-                <div>
-                    <label>Issue Description:</label>
-                    <textarea name="issueDescription" value={formData.issueDescription} onChange={handleChange}></textarea>
-                </div>
+        <div className="report-issue-section">
+            <form className="form" onSubmit={handleSubmit}>
+                <h3>Report an Issue</h3>
+                
+                <label htmlFor="name">Full Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your Full Name"
+                    required
+                />
+
+                <label htmlFor="location">Location</label>
+                <input
+                    type="text"
+                    name="location"
+                    id="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    placeholder="Location of the Issue"
+                    required
+                />
+
+                <label htmlFor="elocation">Exact Location</label>
+                <input
+                    type="text"
+                    name="elocation"
+                    id="elocation"
+                    value={formData.elocation}
+                    onChange={handleChange}
+                    placeholder="Exact Location"
+                    required
+                />
+
+                <label htmlFor="issueDescription">Issue Description</label>
+                <textarea
+                    name="issueDescription"
+                    id="issueDescription"
+                    rows="5"
+                    value={formData.issueDescription}
+                    onChange={handleChange}
+                    placeholder="Describe the issue here"
+                    required
+                ></textarea>
+
                 <button type="submit">Submit</button>
             </form>
         </div>

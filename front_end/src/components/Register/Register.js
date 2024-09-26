@@ -14,7 +14,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       // Make a POST request to the FastAPI backend
       const response = await axios.post("http://localhost:8000/user", {
@@ -22,7 +22,7 @@ const Register = () => {
         email: email,
         password: password,
       });
-
+  
       if (response.status === 200) {
         alert("User registered successfully! Redirecting you to Login Page");
         setTimeout(() => {
@@ -30,10 +30,18 @@ const Register = () => {
         }, 600); // 2-second delay
       }
     } catch (error) {
-      alert("Failed to register user. Please Try Again.");
-      console.error("Error:", error.response.data);
+      // Check if error.response exists
+      if (error.response) {
+        alert("Failed to register user. Please Try Again.");
+        console.error("Error:", error.response.data);
+      } else {
+        // Handle cases where the error response does not exist
+        alert("Network error or server is not reachable.");
+        console.error("Error:", error.message);
+      }
     }
   };
+  
 
   return (
     <div className="wrapper">
