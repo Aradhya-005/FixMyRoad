@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import "./HomePage.css";
 import "./BoxAnimation.css";
 import Dropdown from '../../assets/dropdownArrow.svg';
@@ -20,15 +20,15 @@ const HomePage = () => {
     return () => animation.destroy(); // Clean up the animation on unmount
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const goToRegister = () => {
-    navigate("/register");
-  };
+  // const goToRegister = () => {
+  //   navigate("/register");
+  // };
 
-  const goToLogin = () => {
-    navigate("/login");
-  };
+  // const goToLogin = () => {
+  //   navigate("/login");
+  // };
 
   const faqs = [
     {
