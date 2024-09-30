@@ -1,4 +1,4 @@
-# Road-Sakhi
+# FixMyRoad
 A Road Maintainance and Feedback Portal build with Python FastApi and React.JS.
 <p>A full Stack web applicaion for submitting and viewing feedback related to road maintainance. The backend is built using FastApi, and the front end is built using React.</p>
 
