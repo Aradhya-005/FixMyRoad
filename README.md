@@ -26,13 +26,13 @@ Follow these steps to set up the project on your local machine:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Ayush59699/Road-Sakhi
+git clone https://github.com/Aradhya-005/FixMyRoad.git
 ```
 ### 2. Create a Virtual Environment
 Navigate to the project directory and create a virtual environment:
 ```
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+venv\Scripts\activate
 ```
 ### 3. Install Required Dependencies
 Install the necessary packages:
