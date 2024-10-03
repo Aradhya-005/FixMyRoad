@@ -1,51 +1,58 @@
-# FixMyRoad
-A Road Maintainance and Feedback Portal build with Python FastApi and React.JS.
-<p>A full Stack web applicaion for submitting and viewing feedback related to road maintainance. The backend is built using FastApi, and the front end is built using React.</p>
+# FixMyRoad 🚧
+### A Road Maintenance and Feedback Portal
 
-# Getting Started
+**FixMyRoad** is a full-stack web application designed for submitting and viewing feedback related to road maintenance. The backend is built using **FastAPI**, while the frontend is crafted with **React.js**. This application aims to streamline the process of reporting road issues and enhancing community engagement in road maintenance.
+<br>
 
-### Clone the Repository
-`git clone https://github.com/Ayush59699/Road-Sakhi`
+## 🛠️ Technologies Used
+- **Frontend:**
+  - React.js
+  - CSS (for styling)
+  - Axios (for making HTTP requests)
 
-### Create Virtual Environment
-`python -m venv venv
+- **Backend:**
+  - FastAPI
+  - Pydantic (for data validation)
+  - Uvicorn (as the ASGI server)
+  - SQLAlchemy (for database interactions)
+
+- **Database:**
+  - SQLite (for local development)
+<br>
+
+## 🚀 Getting Started
+
+Follow these steps to set up the project on your local machine:
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Ayush59699/Road-Sakhi
+```
+### 2. Create a Virtual Environment
+Navigate to the project directory and create a virtual environment:
+```
+python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-`
+```
+### 3. Install Required Dependencies
+Install the necessary packages:
+```
+pip install -r requirements.txt
+```
+###  4. Run the Backend Server
 
-
-### Install the required dependencies
-`pip install -r requirements.txt `
-
-
-
-
-
-
-## Frontend Setup
-### 1. Navigate to the front_end directory:
-`cd front_end`
-###  install Node Modules
-`npm install`
-
-
-
-## Running the project
-### Running Locally
-- From the Front-end folder ( inside react app )
-  `npm start`
--From the Root Directory of project ( Outside Front_end folder )
-`uvicorn main:app --reload`
-
-### The portal will be Live at http://localhost:3000
-
-
-
-
-
-
-
-
-
-
-
-
+Start the backend server from the root directory of the project:
+```
+uvicorn main:app --reload
+```
+###   5. Navigate to the Frontend Directory
+```
+cd front_end
+```
+###  6. Install Node Modules
+```
+npm install
+```
+###  7.Start the Frontend Server
+```
+npm start
